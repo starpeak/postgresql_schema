@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.date = %q{2011-03-05}
   s.description = %q{Use PostgreSQL schemas for storing different Rails environments.}
   s.email = %q{info@spom.net}
-  s.files = ["lib/postgresql_schema.rb", "lib/tasks", "lib/tasks/postgresql_schema.rake", "VERSION", "README.rdoc", "LICENCE", "Gemfile"]
+  s.files = ["lib/postgresql_schema.rb", "lib/tasks/postgresql_schema.rake", "VERSION", "README.rdoc", "LICENCE", "Gemfile"]
   s.homepage = %q{http://spom.net/}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.5.0}
@@ -22,10 +22,13 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rails>, [">= 3.0.0"])
+      s.add_runtime_dependency(%q<pg>, [">= 0.10.1"])
     else
       s.add_dependency(%q<rails>, [">= 3.0.0"])
+      s.add_dependency(%q<pg>, [">= 0.10.1"])
     end
   else
     s.add_dependency(%q<rails>, [">= 3.0.0"])
+    s.add_dependency(%q<pg>, [">= 0.10.1"])
   end
 end
