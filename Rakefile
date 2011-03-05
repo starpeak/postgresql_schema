@@ -14,7 +14,7 @@ spec = Gem::Specification.new do |s|
   s.files = Dir["{lib}/**/*", "VERSION", "README*", "LICENCE", "Gemfile"]
   s.version = ::File.read(::File.join(::File.dirname(__FILE__), "VERSION")).strip
   s.add_dependency 'rails', '>= 3.0.0'
-  s.add_dependency 'pg', '>= 3.0.0'
+  s.add_dependency 'pg', '>= 0.10.1'
 end
 
 Rake::GemPackageTask.new(spec) do |pkg|

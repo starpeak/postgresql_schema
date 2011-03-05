@@ -1,4 +1,5 @@
 namespace :db do
+  # Use own create_database, which will create a schema instead of a database if working_schema is configured in database.yml
   def create_database(config)
     @encoding = config['encoding'] || ENV['CHARSET'] || 'utf8'
     begin
@@ -23,6 +24,7 @@ namespace :db do
   end
   
   def drop_database(config)
+    # Use own drop_database, which will drop a schema instead of a database if working_schema is configured in database.yml
     begin
       if schema_name=config['working_schema']
         ActiveRecord::Base.establish_connection(config.merge('schema_search_path' => 'public'))
@@ -38,9 +40,12 @@ namespace :db do
   end
 end
 
+# just put some info about postgresql_schema
 namespace :postgresql_schema
-  desc  'Infos about postgresql_schema'
+  desc  'Some Information about postgresql_schema'
   task :info do
+    puts "Use PostgreSQL schemas for storing different Rails environments."
+    puts ""
     puts "See https://github.com/starpeak/postgresql_schema for further information."
   end
 end
