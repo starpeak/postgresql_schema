@@ -41,10 +41,10 @@ namespace :db do
 end
 
 # just put some info about postgresql_schema
-namespace :postgresql_schema
+namespace :postgresql_schema do
   desc  'Some Information about postgresql_schema'
-  task :info do
-    puts "Use PostgreSQL schemas for storing different Rails environments."
+  task :about do
+    puts "Using PostgreSQL schemas for storing different Rails environments."
     puts ""
     puts "See https://github.com/starpeak/postgresql_schema for further information."
   end

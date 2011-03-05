@@ -3,6 +3,8 @@
 #
 # Use PostgreSQL schemas for storing different Rails environments.
 
+Dir["#{::File.dirname(__FILE__)}/tasks/**/*.rake"].each { |ext| load ext } if defined?(Rake)
+
 require 'active_record/connection_adapters/postgresql_adapter'
 
 module ActiveRecord
@@ -22,26 +24,4 @@ module ActiveRecord
       alias_method_chain :table_exists?, :config_default_schema
     end
   end
-end
-
-# Load rake task
-module PostgresqlSchema
-  # This is the actual version of the PostgresqlSchema gem
-  VERSION = ::File.read(::File.join(::File.dirname(__FILE__), "..", "VERSION")).strip  
-    
-  def self.load options = {} #:nodoc:
-    require ::File.expand_path('../postgresql_schema/rake_tasks', __FILE__)
-  end
-  
-  # This is the path to the PostgresqlSchema gem's root directory
-  def base_directory
-    ::File.expand_path(::File.join(::File.dirname(__FILE__), '..'))
-  end
-  
-  # This is the path to the PostgresqlSchema gem's lib directory
-  def lib_directory
-    ::File.expand_path(::File.join(::File.dirname(__FILE__)))
-  end
-  
-  module_function :base_directory, :lib_directory
 end
