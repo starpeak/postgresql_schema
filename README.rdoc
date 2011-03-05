@@ -7,6 +7,35 @@ Use PostgreSQL schemas for storing different Rails environments.
 * Add PostgreSQL-Schema to your Rails application's Gemfile. 
     gem 'postgresql_schema',       :git => 'git://github.com/starpeak/postgresql_schema.git'
 
+== Example database.yml
+
+  common: &common
+    adapter: postgresql
+    encoding: unicode
+    database: my_database  
+    pool: 5
+    username: my_user
+    password: my_password
+    host: 127.0.0.1
+
+  development: 
+    <<: *common
+    working_schema: development
+    schema_search_path: development, public
+
+  # Warning: The database defined as "test" will be erased and
+  # re-generated from your development database when you run "rake".
+  # Do not set this db to the same as development or production.
+  test: &test
+    <<: *common
+    working_schema: test
+    schema_search_path: test, public
+
+  production:
+    <<: *common
+    working_schema: production
+    schema_search_path: production, public
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
@@ -17,7 +46,7 @@ Use PostgreSQL schemas for storing different Rails environments.
 
 == Credits
 
-We want to send our thanks to Justin French and his co-workers as formtastic deeply inspired this gem.
+Inspired by https://gist.github.com/816228
 
 == Copyright
 

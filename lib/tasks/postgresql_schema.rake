@@ -37,3 +37,10 @@ namespace :db do
     end
   end
 end
+
+namespace :postgresql_schema
+  desc  'Infos about postgresql_schema'
+  task :info do
+    puts "See https://github.com/starpeak/postgresql_schema for further information."
+  end
+end
